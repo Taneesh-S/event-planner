@@ -5,7 +5,11 @@ exports.createEvent = async (req, res) => {
 	try {
 		// const event = new Event(req.body);
 		// await event.save();
-		const event = await Event.create(req.body);
+
+		const { title, description, date, location } = req.body;
+		const createdBy = req.user.userId;
+
+		const event = await Event.create({ title, description, date, location, createdBy });
 		console.log(event);
 		res.status(201).json(event);
 	} catch (err) {
@@ -16,7 +20,7 @@ exports.createEvent = async (req, res) => {
 // Get all events
 exports.getEvents = async (req, res) => {
 	try {
-		const events = await Event.find();
+		const events = await Event.find().populate('createdBy', 'username');
 		res.json(events);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
@@ -39,10 +43,20 @@ exports.getEventById = async (req, res) => {
 // Update event by ID
 exports.updateEvent = async (req, res) => {
 	try {
-		const event = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
-		if (event == null) {
+		const event = await Event.findById(req.params.id);
+		if (!event) {
 			return res.status(404).json({ message: 'Event not found' });
 		}
+		if (event.createdBy.toString() !== req.user.userId) {
+			return res.status(403).json({ message: 'Not authorized to edit this event' });
+		}
+
+		event.title = req.body.title;
+		event.description = req.body.description;
+		event.date = req.body.date;
+		event.location = req.body.location;
+		
+		await event.save();
 		res.json(event);
 	} catch (err) {
 		res.status(500).json({ message: err.message });
@@ -52,12 +66,19 @@ exports.updateEvent = async (req, res) => {
 // Delete event by ID
 exports.deleteEvent = async (req, res) => {
 	try {
-		const event = await Event.findByIdAndDelete(req.params.id);
-		if (event == null) {
+		const event = await Event.findById(req.params.id);
+		if (!event) {
 			return res.status(404).json({ message: 'Event not found' });
 		}
+
+		if (event.createdBy.toString() !== req.user.userId) {
+			return res.status(403).json({ message: 'Not authorized to delete this event'});
+		}
+
+		await event.deleteOne();
 		res.json({ message: 'Event deleted' });
 	} catch (err) {
+		console.error('Delete event error:', err)
 		res.status(500).json({ message: err.message });
 	}
 };

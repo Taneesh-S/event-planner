@@ -10,7 +10,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const eventRoutes = require('./routes/eventRoutes');
-app.use('/api/events', eventRoutes);
+const authMiddleware = require('./middleware/authMiddleware');
+app.use('/api/events', authMiddleware, eventRoutes);
+
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
 
 // MongoDB connection
 mongoose.connect(`${process.env.MONGO_URI}/eventplanner`, {})

@@ -1,0 +1,9 @@
+.home-container {
+    margin-left: var(--sidebar-width);
+    padding: 6rem;
+    color: var(--text-color);
+    text-align: center;
+    /* margin-top: var(--header-height);
+    margin-left: -1rem; */
+    margin: 0 auto;
+}
