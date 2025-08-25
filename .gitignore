@@ -1,0 +1,29 @@
+# Node modules for both server and client
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment files and sensitive data
+.env
+.env.*
+
+# OS and IDE/editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Build output (React)
+client/build/
+client/dist/
+client/.next/
+client/.cache/
+client/coverage/
+
+# Misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
