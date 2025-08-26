@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import Chat from './pages/Chat';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -13,57 +14,37 @@ import EditEvent from './pages/EditEvent';
 
 import PrivateRoute from './components/PrivateRoute';
 
+import { ChatProvider } from './context/ChatContext';
+import { useAuth } from './context/AuthContext';
+
 import './App.css';
 
 function App() {
+	const { user } = useAuth();
+
 	return (
 		<>
 			<Header />
 			<Sidebar />
-			<div className="main-content">
-				<Routes>
-					<Route path="/" element={<Home />} />
+			<ChatProvider user={user}>
 
-					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
+				<div className="main-content">
+					<Routes>
+						<Route path="/" element={<Home />} />
 
-					{/* Protected Routes */}
-					<Route path="/events" element={<PrivateRoute><EventList /></PrivateRoute>} />
-					<Route path="/create" element={<PrivateRoute><CreateEvent /></PrivateRoute>} />
-					<Route path="/edit/:id" element={<PrivateRoute><EditEvent /></PrivateRoute>} />
-				</Routes>
-			</div>
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+
+						{/* Protected Routes */}
+						<Route path="/events" element={<PrivateRoute><EventList /></PrivateRoute>} />
+						<Route path="/create" element={<PrivateRoute><CreateEvent /></PrivateRoute>} />
+						<Route path="/edit/:id" element={<PrivateRoute><EditEvent /></PrivateRoute>} />
+						<Route path="/chat" element={<PrivateRoute><Chat /></PrivateRoute>} />
+					</Routes>
+				</div >
+			</ChatProvider>
 		</>
 	);
 }
 
 export default App;
-
-
-
-
-
-// import React from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import EventList from './pages/EventList';
-// import CreateEvent from './pages/CreateEvent';
-// import EditEvent from './pages/EditEvent';
-// import Register from './pages/Register';
-// import Login from './pages/Login';
-// import PrivateRoute from './components/PrivateRoute';
-
-// function App() {
-// 	return (
-// 		<Routes>
-// 			<Route path="/register" element={<Register />} />
-// 			<Route path="/login" element={<Login />} />
-
-// 			<Route path="/" element={<PrivateRoute><EventList /></PrivateRoute>} />
-// 			<Route path="/create" element={<PrivateRoute><CreateEvent /></PrivateRoute>} />
-// 			<Route path="/edit/:id" element={<PrivateRoute><EditEvent /></PrivateRoute>} />
-// 		</Routes>
-// 	);
-// }
-
-// export default App;

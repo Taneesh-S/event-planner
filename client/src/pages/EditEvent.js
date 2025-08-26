@@ -39,10 +39,10 @@ const EditEvent = () => {
     if (error) {
         return <>
             <div style={{ color: 'red', textAlign: 'center' }}>{error}</div>
-            <div style={{display: "flex", justifyContent: "center"}}>
-                <button onClick={() => {navigate('/events')}} style={{ backgroundColor: 'red', color: 'white', marginTop: "1rem", padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>Go back</button>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <button onClick={() => { navigate('/events') }} style={{ backgroundColor: 'red', color: 'white', marginTop: "1rem", padding: '0.5rem 1rem', borderRadius: '0.5rem' }}>Go back</button>
             </div>
-        </> 
+        </>
     }
 
     if (!event) {

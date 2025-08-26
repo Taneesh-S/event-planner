@@ -1,48 +1,58 @@
 :root {
-  --dark-bg: #0a1e3f; /* very dark navy blue */
-  --dark-bg-light: #142a5b; /* slightly lighter navy */
-  --text-color: #e0e6f3;   /* light gray */
-  --accent-color: #f4f8fc; /* white */
-  --button-bg: #274472;
-  --button-hover-bg: #3f72af;
-  --header-height: 4rem;
-  --sidebar-width: 220px;
+	--dark-bg: #0a1e3f; /* very dark navy blue */
+	--dark-bg-light: #142a5b; /* slightly lighter navy */
+	--text-color: #e0e6f3; /* light gray */
+	--accent-color: #f4f8fc; /* white */
+	--button-bg: #274472;
+	--button-hover-bg: #3f72af;
+	--header-height: 4rem;
+	--sidebar-width: 220px;
 }
 
-body, html, #root {
-  height: 100%;
-  margin: 0;
-  background-color: var(--dark-bg);
-  color: var(--text-color);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body,
+html,
+#root {
+	height: 100%;
+	margin: 0;
+	background-color: var(--dark-bg);
+	color: var(--text-color);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a {
-  color: var(--accent-color);
-  text-decoration: none;
+	color: var(--accent-color);
+	text-decoration: none;
 }
 
 a:hover {
-  color: var(--button-hover-bg);
+	color: var(--button-hover-bg);
 }
 
 button {
-  background-color: var(--button-bg);
-  color: var(--text-color);
-  border: none;
-  padding: 0.5em 1em;
-  border-radius: 4px;
+	background-color: var(--button-bg);
+	color: var(--text-color);
+	border: none;
+	padding: 0.5em 1em;
+	border-radius: 4px;
 }
 
 button:hover {
-  background-color: var(--button-hover-bg);
-  cursor: pointer;
+	background-color: var(--button-hover-bg);
+	cursor: pointer;
 }
 
 .main-content {
-  margin-left: var(--sidebar-width);
-  padding: 1.5rem;
-  padding-top: calc(var(--header-height) + 1rem);
-  min-height: calc(100vh - var(--header-height));
-  box-sizing: border-box;
+	margin-left: var(--sidebar-width);
+	padding: 1.5rem;
+	padding-top: calc(var(--header-height) + 1rem);
+	min-height: calc(100vh - var(--header-height));
+	box-sizing: border-box;
+}
+
+.chat-content {
+	margin-left: var(--sidebar-width);
+	padding: 1.5rem;
+	padding-top: calc(var(--header-height) + 1rem);
+	min-height: calc(100vh - var(--header-height));
+	box-sizing: border-box;
 }

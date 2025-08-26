@@ -48,10 +48,17 @@ const EventList = () => {
 				<tbody>
 					{events.map(event => {
 						const loggedInUserId = user?.id;
+						const loggedInUsername = user?.username;
+						console.log(loggedInUsername);
 						const eventCreatorId = event.createdBy?._id;
 
-						const canDelete = eventCreatorId && loggedInUserId && eventCreatorId.toString() === loggedInUserId.toString();
-						const canEdit = canDelete;
+						let canDelete = eventCreatorId && loggedInUserId && eventCreatorId.toString() === loggedInUserId.toString();
+						let canEdit = canDelete;
+
+						if (loggedInUsername === 'Admin') {
+							canDelete = true;
+							canEdit = true;
+						}
 
 						return (
 							<tr key={event._id}>

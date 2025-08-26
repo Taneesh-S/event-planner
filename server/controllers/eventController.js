@@ -1,5 +1,9 @@
 const Event = require('../models/Event');
 
+const isAdmin = (user) => {
+	return (user.email === 'admin@admin.com');
+}
+
 // Create new event
 exports.createEvent = async (req, res) => {
 	try {
@@ -47,7 +51,7 @@ exports.updateEvent = async (req, res) => {
 		if (!event) {
 			return res.status(404).json({ message: 'Event not found' });
 		}
-		if (event.createdBy.toString() !== req.user.userId) {
+		if ((event.createdBy.toString() !== req.user.userId) && !isAdmin(req.user)) {
 			return res.status(403).json({ message: 'Not authorized to edit this event' });
 		}
 
@@ -55,7 +59,7 @@ exports.updateEvent = async (req, res) => {
 		event.description = req.body.description;
 		event.date = req.body.date;
 		event.location = req.body.location;
-		
+
 		await event.save();
 		res.json(event);
 	} catch (err) {
@@ -71,8 +75,9 @@ exports.deleteEvent = async (req, res) => {
 			return res.status(404).json({ message: 'Event not found' });
 		}
 
-		if (event.createdBy.toString() !== req.user.userId) {
-			return res.status(403).json({ message: 'Not authorized to delete this event'});
+		if (e(vent.createdBy.toString() !== req.user.userId) && !isAdmin(req.user)) {
+			return res.status(403).json({ message: 'Not authorized to delete this event' });
+
 		}
 
 		await event.deleteOne();
