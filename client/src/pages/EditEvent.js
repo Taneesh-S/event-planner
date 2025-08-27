@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../pages/css/EditEvent.css';
 
+// Edit Event Method
 const EditEvent = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ const EditEvent = () => {
     });
 
     useEffect(() => {
+        // Get the selected event details from DB
         const fetchEvent = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/api/events/${id}`);
@@ -29,6 +31,7 @@ const EditEvent = () => {
                     location,
                 });
             } catch (err) {
+                // Can't delete events created by someone else
                 setError('You are not authorized to edit this event.');
                 console.error('Error fetching event:', err);
             }

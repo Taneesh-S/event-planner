@@ -1,17 +1,16 @@
 :root {
-	--dark-bg: #0a1e3f; /* very dark navy blue */
-	--dark-bg-light: #142a5b; /* slightly lighter navy */
-	--text-color: #e0e6f3; /* light gray */
-	--accent-color: #f4f8fc; /* white */
-	--button-bg: #274472;
-	--button-hover-bg: #3f72af;
+	--dark-bg: #212121; /* charcoal dark gray */
+	--dark-bg-light: #2e2e2e; /* dark slate gray */
+	--text-color: #f5f5f5; /* off-white */
+	--accent-color: #ff7043; /* warm coral */
+	--button-bg: #d84315; /* deep coral */
+	--button-hover-bg: #ff7043; /* bright coral */
+	--error-color: #e57373; /* soft red */
 	--header-height: 4rem;
 	--sidebar-width: 220px;
 }
 
-body,
-html,
-#root {
+body, html, #root {
 	height: 100%;
 	margin: 0;
 	background-color: var(--dark-bg);
@@ -33,7 +32,8 @@ button {
 	color: var(--text-color);
 	border: none;
 	padding: 0.5em 1em;
-	border-radius: 4px;
+	border-radius: 6px;
+	font-weight: 600;
 }
 
 button:hover {
@@ -41,15 +41,7 @@ button:hover {
 	cursor: pointer;
 }
 
-.main-content {
-	margin-left: var(--sidebar-width);
-	padding: 1.5rem;
-	padding-top: calc(var(--header-height) + 1rem);
-	min-height: calc(100vh - var(--header-height));
-	box-sizing: border-box;
-}
-
-.chat-content {
+.main-content, .chat-content {
 	margin-left: var(--sidebar-width);
 	padding: 1.5rem;
 	padding-top: calc(var(--header-height) + 1rem);

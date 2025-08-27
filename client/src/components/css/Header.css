@@ -4,23 +4,28 @@
 	align-items: center;
 	background-color: var(--dark-bg-light);
 	padding: 1rem 2rem;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
 	position: sticky;
 	top: 0;
 	z-index: 1000;
 	height: var(--header-height);
+	color: var(--text-color);
 }
 
 .app-header .logo {
-	font-size: 1.5rem;
-	font-weight: bold;
+	font-size: 1.75rem;
+	font-weight: 700;
 	color: var(--accent-color);
+	letter-spacing: 2px;
 }
 
 .app-header nav a {
-	margin-left: 1rem;
+	margin-left: 1.5rem;
 	color: var(--text-color);
 	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	transition: color 0.3s ease;
 }
 
 .app-header nav a:hover {
@@ -28,20 +33,19 @@
 }
 
 .logout-btn {
-	background-color: white;
-	border: 2px solid;
-	color: #3f72af;
-	padding: 0.3rem 0.8rem;
-	border-radius: 2rem;
-	width: 7rem;
-	height: 3rem;
-	font-size: 1.25rem;
-	font-weight: 600;
+	background-color: transparent;
+	border: 2px solid var(--accent-color);
+	color: var(--accent-color);
+	padding: 0.4rem 1rem;
+	border-radius: 30px;
+	font-size: 1.1rem;
+	font-weight: 700;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .logout-btn:hover {
 	background-color: var(--button-hover-bg);
-	color: var(--text-color);
+	color: var(--dark-bg-light);
 	cursor: pointer;
 }
 

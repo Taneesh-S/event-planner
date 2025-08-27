@@ -1,5 +1,6 @@
 const Event = require('../models/Event');
 
+// Checking if logged in user is admin
 const isAdmin = (user) => {
 	return (user.email === 'admin@admin.com');
 }
@@ -7,9 +8,6 @@ const isAdmin = (user) => {
 // Create new event
 exports.createEvent = async (req, res) => {
 	try {
-		// const event = new Event(req.body);
-		// await event.save();
-
 		const { title, description, date, location } = req.body;
 		const createdBy = req.user.userId;
 

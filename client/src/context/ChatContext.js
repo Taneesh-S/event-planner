@@ -1,11 +1,15 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 
+// Create Context
 const ChatContext = createContext();
 
+// Custom hook to user ChatContext
 export const useChat = () => useContext(ChatContext);
 
+// Provider Component
 export const ChatProvider = ({ children, user }) => {
+
 	const [users, setUsers] = useState([]);
 	const [messages, setMessages] = useState([]);
 	const [popup, setPopup] = useState("");
@@ -53,7 +57,6 @@ export const ChatProvider = ({ children, user }) => {
 	const leaveChat = () => {
 		if (socketRef.current) {
 			socketRef.current.emit("leave");
-			// Keep connection alive; don't disconnect socket here
 		}
 	};
 

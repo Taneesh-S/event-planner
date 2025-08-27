@@ -3,20 +3,27 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../pages/css/Register.css';
 
+// Register Page
 const Register = () => {
 	const [formData, setFormData] = useState({
 		username: '',
 		email: '',
 		password: '',
 	});
+
+	// Form Errors
 	const [error, setError] = useState('');
+	
+	// Validation Errors
 	const [errors, setErrors] = useState('');
+	
 	const navigate = useNavigate();
 
 	const regexUsername = /^[a-zA-Z]+.*\d{2,}$/;
 	const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 	const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@._\-$#])[A-Za-z\d@._\-$#]{6,}$/;
 
+	// Validation method using RegEx
 	const validate = () => {
 		const newErrors = {};
 
@@ -50,7 +57,7 @@ const Register = () => {
 		setError('');
 
 		if (validate()) {
-			// Validation passed - proceed to submit the form or API call
+			// Validation passed - proceed to submit the form and call API
 			console.log('Form data is valid:', formData);
 			try {
 				await axios.post('http://localhost:8080/api/auth/register', formData);
@@ -61,8 +68,10 @@ const Register = () => {
 		}
 	};
 
+	// Toggle password input text between visible and invisible
 	const togglePasswordVisibility = () => {
 		const passwordInput = document.getElementById('password');
+		
 		if (passwordInput.type === 'password') {
 			passwordInput.type = 'text';
 		} else {
@@ -71,7 +80,6 @@ const Register = () => {
 	};
 
 	return (
-
 		<div className="register-container">
 			<h1>Sign Up</h1>
 			{error && <p className="error-msg">{error}</p>}
@@ -97,7 +105,7 @@ const Register = () => {
 				</label>
 
 				<p>
-					Already have an account ? <Link to="/login" style={{ fontWeight: '500', textDecoration: 'underline', color: '#fff' }}>Login here</Link>
+					Already have an account ? <Link to="/login" id='link' >Login here</Link>
 				</p>
 				<button type='submit'>Register</button>
 			</form>

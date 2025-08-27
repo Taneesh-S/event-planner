@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+// Creating the schema (Structure) for creating users
 const userSchema = new mongoose.Schema({
 	username: {
 		type: String,
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema({
 	},
 });
 
-// Password hashing before save
+// Hashing Password before saving in DB
 userSchema.pre('save', async function (next) {
 	if (!this.isModified('password')) {
 		return next()

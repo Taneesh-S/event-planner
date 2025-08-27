@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './css/Header.css';
 
+// Header Component
 const Header = () => {
 	const { user, logout } = useAuth();
 
@@ -21,6 +22,7 @@ const Header = () => {
 					</>
 				) : (
 					<>
+						{/* Show Username along with a logout button */}
 						<div className='header-content'>
 							<h3 className='content'>Welcome, {user.username}</h3>
 							<button onClick={logout} className="logout-btn content">

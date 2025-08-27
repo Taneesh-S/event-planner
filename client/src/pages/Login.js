@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import '../pages/css/Login.css';
 
+// Login page
 const Login = () => {
 	const { login } = useAuth();
 	const [formData, setFormData] = useState({ email: '', password: '' });
@@ -28,6 +29,7 @@ const Login = () => {
 		}
 	};
 
+	// Toggle password input text between visible and invisible
 	const togglePasswordVisibility = () => {
 		const passwordInput = document.getElementById('pass');
 		if (passwordInput.type === 'password') {
@@ -52,7 +54,7 @@ const Login = () => {
 				</label>
 
 				<p>
-					Don't have an account? <Link to="/register" style={{ fontWeight: "500", textDecoration: "underline", color: "#fff" }}>Register here</Link>
+					Don't have an account? <Link to="/register" id='link'>Register here</Link>
 				</p>
 				<button type="submit">Login</button>
 			</form>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../pages/css/EventList.css';
 
+// View all events
 const EventList = () => {
 	const { user } = useAuth();
 	const navigate = useNavigate();
@@ -13,6 +14,7 @@ const EventList = () => {
 		fetchEvents();
 	}, []);
 
+	// Get events from DB
 	const fetchEvents = async () => {
 		try {
 			const response = await axios.get('http://localhost:8080/api/events');
@@ -31,6 +33,7 @@ const EventList = () => {
 		}
 	};
 
+	// Convert the date format to DD-MM-YYYY before printing on screen
 	const formatDateToDDMMYYYY = (date) => {
 		const d = date.getDate().toString().padStart(2, '0');
 		const m = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -39,7 +42,6 @@ const EventList = () => {
 	}
 
 	return (
-
 		<div className='event-list-container'>
 			<table className='event-table'>
 				<thead>
@@ -54,6 +56,7 @@ const EventList = () => {
 				</thead>
 				<tbody>
 					{events.map(event => {
+						// If logged in user = event creator, allow editing / deleting permissions
 						const loggedInUserId = user?.id;
 						const loggedInUsername = user?.username;
 						const eventCreatorId = event.createdBy?._id;
@@ -61,6 +64,7 @@ const EventList = () => {
 						let canDelete = eventCreatorId && loggedInUserId && eventCreatorId.toString() === loggedInUserId.toString();
 						let canEdit = canDelete;
 
+						// If Admin, give all permissions
 						if (loggedInUsername === 'Admin') {
 							canDelete = true;
 							canEdit = true;
@@ -72,12 +76,13 @@ const EventList = () => {
 								<td>{event.description}</td>
 								<td>{formatDateToDDMMYYYY(new Date(event.date))}</td>
 								<td>{event.location}</td>
-								{/* <td>{event.createdBy?.username || 'Unknown'}</td> */}
 								<td>{(event.createdBy?.username === 'Admin') ? (
-									<span style={{ color: 'green', fontWeight: '700'}}>Admin</span>
+									// Assign different colour to Admin
+									<span style={{ color: '#00ff00ff', fontWeight: '700', textDecoration: '1.5px underline' }}>Admin</span>
 								) : (
 									<span>{event.createdBy?.username || 'Unknown'}</span>
-								)}</td>
+								)}
+								</td>
 								<td>
 									{canEdit ? (
 										<button onClick={() => navigate(`/edit/${event._id}`)} className="edit-btn">Edit</button>

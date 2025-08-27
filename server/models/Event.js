@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Creating the schema (Structure) for creating events
 const eventSchema = new mongoose.Schema({
 	title: {
 		type: String,

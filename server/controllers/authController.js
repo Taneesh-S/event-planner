@@ -1,16 +1,20 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
+// Initializing secret code from .env file
 const JWT_SECRET = process.env.JWT_SECRET || "";
 
 exports.register = async (req, res) => {
+	// Extracting data from request
 	const { username, email, password } = req.body;
 	try {
+		// Finding user by email or username as they are unique
 		const existingUser = await User.findOne({ $or: [{ email }, { username }] });
 		if (existingUser) {
 			return res.status(400).json({ message: 'User already exists' });
 		}
 
+		// Create user if not present in DB
 		const user = await User.create({ username, email, password });
 		console.log(user);
 
@@ -21,18 +25,22 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
+	// Extracting data from request
 	const { email, password } = req.body;
 	try {
+		// Finding user by email
 		const user = await User.findOne({ email: email });
 		if (!user) {
 			return res.status(400).json({ message: 'Invalid credentials' });
 		}
 
+		// Verifying input password with DB 
 		const isMatch = await user.comparePassword(password);
 		if (!isMatch) {
 			return res.status(400).json({ message: 'Invalid credentials' });
 		}
 
+		// Assigning JWT Token
 		const token = jwt.sign({ userId: user._id, userEmail: user.email }, JWT_SECRET, { expiresIn: '1d' });
 		res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
 	} catch (err) {
@@ -40,7 +48,9 @@ exports.login = async (req, res) => {
 	}
 };
 
+// Method to create Admin user on first initialization
 async function createAdminUser() {
+	// Check if admin creadentials are present in DB
 	const existingAdmin = await User.findOne({ email: 'admin@admin.com' });
 
 	if (!existingAdmin) {

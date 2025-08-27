@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './css/Sidebar.css';
 
+// Sidebar Component
 const Sidebar = () => {
 	const { user } = useAuth();
 
 	return (
 		<aside className="app-sidebar">
 			<nav>
+				{/* Show navigation options only if an user has logged in */}
 				{user ? (
 					<>
 						<Link to="/events">Events</Link>

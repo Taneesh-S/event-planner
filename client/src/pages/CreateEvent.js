@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../pages/css/CreateEvent.css';
 
+// Create Event Method
 const CreateEvent = () => {
 	const { user } = useAuth();
 
@@ -43,7 +44,7 @@ const CreateEvent = () => {
 
 				<textarea name="description" value={formData.description} placeholder='Description. Max Length 30 Characters' style={{ width: "100%" }} onChange={handleChange} />
 
-				<input type="date" name="date" value={formData.date} style={{ width: "100%" }} placeholder='Date' onChange={handleChange} />
+				<input type="text" name="date" value={formData.date} style={{ width: "100%" }} placeholder='DD-MM-YYYY' onFocus={(e) => (e.target.type = "date")} onBlur={(e) => (e.target.type = "text")} onChange={handleChange} />
 
 				<input name="location" value={formData.location} placeholder='Location' style={{ width: "100%" }} onChange={handleChange} />
 

@@ -4,10 +4,12 @@ import { toast, ToastContainer } from "react-toastify";
 const JOIN_TOAST_ID = "toast-user-join";
 const LEAVE_TOAST_ID = "toast-user-leave";
 
+// Pop-up Notification Component
 const ChatNotifications = ({ popup }) => {
 	const lastPopup = useRef("");
 
 	useEffect(() => {
+		// Don't show pop-up again if shown once
 		if (!popup || popup === lastPopup.current) return;
 
 		lastPopup.current = popup;

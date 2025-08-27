@@ -1,31 +1,38 @@
 .app-sidebar {
-	width: 220px;
+	width: var(--sidebar-width);
 	background-color: var(--dark-bg-light);
 	height: 100vh;
 	position: fixed;
 	top: var(--header-height+1rem);
 	left: 0;
-	padding: 1rem;
-	box-shadow: 2px 0 6px rgba(0, 0, 0, 0.7);
+	padding: 1.5rem 1rem;
+	box-shadow: 2px 0 8px rgba(0, 0, 0, 0.9);
 	overflow-y: auto;
 	box-sizing: border-box;
+	color: var(--text-color);
+	font-weight: 600;
+	letter-spacing: 0.05em;
 }
 
 .app-sidebar nav a {
 	display: block;
-	padding: 0.7rem 1rem;
-	margin-bottom: 0.5rem;
+	padding: 0.9rem 1.2rem;
+	margin-bottom: 0.7rem;
 	color: var(--text-color);
-	border-radius: 4px;
-	font-weight: 500;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .app-sidebar nav a:hover {
-	background-color: var(--button-hover-bg);
-	color: var(--text-color);
+	background-color: #cf6343;
+	color: var(--dark-bg-light);
+	font-weight: 600;
 }
 
 .app-sidebar p {
 	color: var(--accent-color);
 	font-style: italic;
+	margin-top: 1rem;
+	font-weight: 400;
 }

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ChatNotifications from "../components/ChatNotifications";
 import "../pages/css/Chat.css";
 
+// Chat Method
 const Chat = () => {
 	const { user } = useAuth();
 	const { users, messages, popup, sendMessage, joinChat, leaveChat } = useChat();
@@ -12,6 +13,7 @@ const Chat = () => {
 	const bottomRef = useRef(null);
 	const navigate = useNavigate();
 
+	// Scroll to the bottom of the window
 	useEffect(() => {
 		bottomRef.current?.scrollIntoView({ behavior: "smooth" });
 	}, [messages]);
@@ -32,6 +34,7 @@ const Chat = () => {
 		navigate("/");
 	};
 
+	// Accessing protected char route without logging in
 	if (!user || !user.username) {
 		return <div className="chat-main">Please log in to join the chat.</div>;
 	}
@@ -39,7 +42,6 @@ const Chat = () => {
 	return (
 		<>
 			<div className="chat-main-outer">
-				{/* Message area */}
 				<div className="chat-main-column">
 					<div className="chat-messages-list">
 						{messages.map((msg, i) => (
@@ -47,11 +49,23 @@ const Chat = () => {
 								key={i}
 								className={`chat-message ${msg.username === user.username ? "own-message" : ""}`}
 							>
-								<strong>{msg.username}: </strong> {msg.message}
+								{
+									(msg.username === user.username ? (
+										<>
+											{/* Displaying own name in different colour */}
+											<span style={{color: 'var(--accent-color)'}}><strong>{msg.username}: </strong></span> {msg.message}
+										</>
+									) : (
+										<>
+											<strong>{msg.username}: </strong> {msg.message}
+										</>
+									))
+								}
 							</div>
 						))}
 						<div ref={bottomRef} />
 					</div>
+
 					<form onSubmit={handleSend} className="chat-inputbar-fixed">
 						<input
 							className="chat-input"
@@ -66,7 +80,8 @@ const Chat = () => {
 						</button>
 					</form>
 				</div>
-				{/* Sidebar */}
+
+				{/* Sidebar to display connected users */}
 				<div className="chat-sidebar">
 					<div>
 						<div className="chat-users-title" id="onlineUsers">Online Users</div>
