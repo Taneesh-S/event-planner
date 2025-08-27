@@ -75,7 +75,7 @@ exports.deleteEvent = async (req, res) => {
 			return res.status(404).json({ message: 'Event not found' });
 		}
 
-		if (e(vent.createdBy.toString() !== req.user.userId) && !isAdmin(req.user)) {
+		if ((event.createdBy.toString() !== req.user.userId) && !isAdmin(req.user)) {
 			return res.status(403).json({ message: 'Not authorized to delete this event' });
 
 		}

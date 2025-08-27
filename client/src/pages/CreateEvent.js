@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import './CreateEvent.css';
+import '../pages/css/CreateEvent.css';
 
 const CreateEvent = () => {
 	const { user } = useAuth();

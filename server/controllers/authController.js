@@ -39,3 +39,17 @@ exports.login = async (req, res) => {
 		res.status(500).json({ message: err.message });
 	}
 };
+
+async function createAdminUser() {
+	const existingAdmin = await User.findOne({ email: 'admin@admin.com' });
+
+	if (!existingAdmin) {
+		await User.create({
+			username: 'Admin',
+			email: 'admin@admin.com',
+			password: 'Admin.00'
+		});
+		console.log('Admin user created securely.');
+	}
+}
+createAdminUser();

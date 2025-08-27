@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import './EventList.css';
+import '../pages/css/EventList.css';
 
 const EventList = () => {
 	const { user } = useAuth();
@@ -31,6 +31,13 @@ const EventList = () => {
 		}
 	};
 
+	const formatDateToDDMMYYYY = (date) => {
+		const d = date.getDate().toString().padStart(2, '0');
+		const m = (date.getMonth() + 1).toString().padStart(2, '0');
+		const y = date.getFullYear();
+		return `${d}/${m}/${y}`;
+	}
+
 	return (
 
 		<div className='event-list-container'>
@@ -49,7 +56,6 @@ const EventList = () => {
 					{events.map(event => {
 						const loggedInUserId = user?.id;
 						const loggedInUsername = user?.username;
-						console.log(loggedInUsername);
 						const eventCreatorId = event.createdBy?._id;
 
 						let canDelete = eventCreatorId && loggedInUserId && eventCreatorId.toString() === loggedInUserId.toString();
@@ -64,9 +70,14 @@ const EventList = () => {
 							<tr key={event._id}>
 								<td>{event.title}</td>
 								<td>{event.description}</td>
-								<td>{new Date(event.date).toLocaleDateString()}</td>
+								<td>{formatDateToDDMMYYYY(new Date(event.date))}</td>
 								<td>{event.location}</td>
-								<td>{event.createdBy?.username || 'Unknown'}</td>
+								{/* <td>{event.createdBy?.username || 'Unknown'}</td> */}
+								<td>{(event.createdBy?.username === 'Admin') ? (
+									<span style={{ color: 'green', fontWeight: '700'}}>Admin</span>
+								) : (
+									<span>{event.createdBy?.username || 'Unknown'}</span>
+								)}</td>
 								<td>
 									{canEdit ? (
 										<button onClick={() => navigate(`/edit/${event._id}`)} className="edit-btn">Edit</button>

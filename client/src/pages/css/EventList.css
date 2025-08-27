@@ -1,0 +1,61 @@
+.event-list-container {
+	padding: 1rem;
+	overflow-x: auto;
+}
+
+.event-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.9rem;
+	color: var(--text-color);
+}
+
+.event-table thead tr {
+	border-bottom: 2px solid var(--button-hover-bg);
+}
+
+.event-table thead th {
+	padding: 0.75rem;
+	text-align: center;
+	background-color: var(--dark-bg-light);
+	font-weight: 600;
+	color: var(--accent-color);
+}
+
+.event-table tbody tr {
+	border-bottom: 1px solid var(--button-bg);
+}
+
+.event-table tbody td {
+	padding: 0.5rem 0.75rem;
+	text-align: center;
+}
+
+.edit-btn,
+.delete-btn {
+	margin-right: 0.5rem;
+	padding: 0.25rem 0.75rem;
+	border: none;
+	border-radius: 4px;
+	color: var(--text-color);
+	cursor: pointer;
+}
+
+.edit-btn {
+	/* background-color: var(--button-bg); */
+	background-color: rgb(11, 139, 31);
+}
+
+.edit-btn:hover {
+	background-color: var(--button-hover-bg);
+}
+
+.delete-btn {
+	background-color: #b33939;
+	/* dark red */
+}
+
+.delete-btn:hover {
+	background-color: #d63031;
+	/* lighter red */
+}

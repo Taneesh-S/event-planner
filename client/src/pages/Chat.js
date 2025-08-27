@@ -3,7 +3,7 @@ import { useChat } from "../context/ChatContext";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import ChatNotifications from "../components/ChatNotifications";
-import "./Chat.css";
+import "../pages/css/Chat.css";
 
 const Chat = () => {
 	const { user } = useAuth();
