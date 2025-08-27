@@ -9,7 +9,6 @@
 	--header-height: 4rem;
 	--sidebar-width: 220px;
 }
-
 body, html, #root {
 	height: 100%;
 	margin: 0;
