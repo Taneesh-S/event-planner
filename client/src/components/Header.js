@@ -11,7 +11,7 @@ const Header = () => {
 		<header className="app-header">
 			<div className="logo">
 				<Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
-					EventPlanner
+					Gather & Go
 				</Link>
 			</div>
 			<nav>

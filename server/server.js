@@ -25,7 +25,7 @@ const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
 // MongoDB Connection
-mongoose.connect(`${process.env.MONGO_URI}/eventplanner`, {})
+mongoose.connect(`${process.env.MONGO_URI}/gather&go`, {})
 	.then(() => console.log('MongoDB connected'))
 	.catch((err) => console.log(err));
 

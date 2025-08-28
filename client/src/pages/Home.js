@@ -11,7 +11,7 @@ const Home = () => {
             {!user ? (
                 // If not Logged In
                 <div className="home-container">
-                    <h1>Welcome to EventPlanner</h1>
+                    <h1>Welcome to <span style={{ color: 'var(--accent-color)'}}>Gather & Go</span></h1>
                     <p>Please login or sign up to continue.</p>
                 </div>
 
