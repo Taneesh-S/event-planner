@@ -67,21 +67,20 @@ const EditEvent = () => {
     };
 
     return (
-        // { ? () : ()}
         <div className='edit-container'>
             <h1>Edit Event</h1>
             <form onSubmit={handleSubmit}>
                 <label>Title:</label>
-                <input name="title" value={formData.title} style={{ width: "100%" }} onChange={handleChange} required />
+                <input name="title" value={formData.title} onChange={handleChange} required />
 
                 <label>Description:</label>
-                <textarea name="description" value={formData.description} style={{ width: "100%" }} onChange={handleChange} />
+                <textarea name="description" value={formData.description} onChange={handleChange} />
 
                 <label>Date:</label>
-                <input type="date" name="date" value={formData.date} style={{ width: "100%" }} onChange={handleChange} />
+                <input type="date" name="date" value={formData.date} onChange={handleChange} />
 
                 <label>Location:</label>
-                <input name="location" value={formData.location} style={{ width: "100%" }} onChange={handleChange} />
+                <input name="location" value={formData.location} onChange={handleChange} />
 
                 <button type="submit">Update</button>
             </form>

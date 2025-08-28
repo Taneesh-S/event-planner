@@ -40,13 +40,13 @@ const CreateEvent = () => {
 			<h1>Create Event</h1>
 			<form onSubmit={handleSubmit}>
 
-				<input name="title" value={formData.title} onChange={handleChange} placeholder='Title' style={{ width: "100%" }} required />
+				<input name="title" value={formData.title} onChange={handleChange} placeholder='Title' required />
 
-				<textarea name="description" value={formData.description} placeholder='Description. Max Length 30 Characters' style={{ width: "100%" }} onChange={handleChange} />
+				<textarea name="description" value={formData.description} placeholder='Description. Max Length 30 Characters' onChange={handleChange} />
 
-				<input type="text" name="date" value={formData.date} style={{ width: "100%" }} placeholder='DD-MM-YYYY' onFocus={(e) => (e.target.type = "date")} onBlur={(e) => (e.target.type = "text")} onChange={handleChange} />
+				<input type="date" name="date" value={formData.date} onChange={handleChange} />
 
-				<input name="location" value={formData.location} placeholder='Location' style={{ width: "100%" }} onChange={handleChange} />
+				<input name="location" value={formData.location} placeholder='Location' onChange={handleChange} />
 
 				<button type="submit">Create</button>
 			</form>

@@ -1,6 +1,6 @@
 .edit-container {
 	max-width: 400px;
-	margin: 6rem auto;
+	margin: 3rem auto;
 	background-color: var(--dark-bg-light);
 	padding: 2.5rem;
 	border-radius: 16px;
@@ -26,17 +26,18 @@
 	font-size: 1rem;
 }
 
-.edit-container input {
+.edit-container input, textarea {
 	width: 100%;
 	padding: 0.8rem 1rem;
 	border-radius: 10px;
 	border: none;
 	margin-bottom: 1.5rem;
 	background-color: var(--dark-bg);
-	color: var(--text-color);
+	color: var(--accent-color);
 	font-size: 1rem;
 	box-sizing: border-box;
 	transition: box-shadow 0.3s ease;
+	letter-spacing: 0.07rem;
 }
 
 .edit-container input::placeholder {
